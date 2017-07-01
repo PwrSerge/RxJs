@@ -1,17 +1,39 @@
 import $ from 'jquery';
 import Rx from 'rxjs/Rx';
 
-const numbers = [33,22,55,66,77];
-const numbers$ = Rx.Observable.from(numbers);
+// const source$ = new Rx.Observable(observer => {
+//   console.log('Creating Observable');
+//   observer.next('Hello World');
+//   observer.next('Another value');
+//   observer.error(new Error('Error: Something went wrong'));
 
-numbers$.subscribe(
-  v => {
-    console.log(v);
-  },
-  err => {
-    console.log(err);
-  },
-  complete => {
-    console.log('completed');
-  }
-);
+//   setTimeout(() => {
+//     observer.next('Yet another value');
+//     observer.complete();
+//   }, 3000);
+// });
+
+// source$
+// .catch(err => Rx.Observable.of(err))
+// .subscribe(
+//   x => {
+//       console.log(x);
+//     },
+// err => {
+//   console.log(err);
+// },
+// complete => {
+//   console.log('completed');
+// }
+// );
+
+const MyPromise = new Promise((resolve,reject) => {
+  console.log('Creating Promise');
+  setTimeout(() => {
+        resolve('Hello from promise');
+      }, 3000);
+});
+
+MyPromise.then(x => {
+  console.log(x);
+});

@@ -56,15 +56,41 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var numbers = [33, 22, 55, 66, 77];
-	var numbers$ = _Rx2.default.Observable.from(numbers);
+	// const source$ = new Rx.Observable(observer => {
+	//   console.log('Creating Observable');
+	//   observer.next('Hello World');
+	//   observer.next('Another value');
+	//   observer.error(new Error('Error: Something went wrong'));
 
-	numbers$.subscribe(function (v) {
-	  console.log(v);
-	}, function (err) {
-	  console.log(err);
-	}, function (complete) {
-	  console.log('completed');
+	//   setTimeout(() => {
+	//     observer.next('Yet another value');
+	//     observer.complete();
+	//   }, 3000);
+	// });
+
+	// source$
+	// .catch(err => Rx.Observable.of(err))
+	// .subscribe(
+	//   x => {
+	//       console.log(x);
+	//     },
+	// err => {
+	//   console.log(err);
+	// },
+	// complete => {
+	//   console.log('completed');
+	// }
+	// );
+
+	var MyPromise = new Promise(function (resolve, reject) {
+	  console.log('Creating Promise');
+	  setTimeout(function () {
+	    resolve('Hello from promise');
+	  }, 3000);
+	});
+
+	MyPromise.then(function (x) {
+	  console.log(x);
 	});
 
 /***/ }),
