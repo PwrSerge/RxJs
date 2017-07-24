@@ -56,32 +56,32 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// const source$ = new Rx.Observable(observer => {
-	//   console.log('Creating Observable');
-	//   observer.next('Hello World');
-	//   observer.next('Another value');
-	//   observer.error(new Error('Error: Something went wrong'));
+	/*const source$ = new Rx.Observable(observer => {
+	  console.log('Creating Observable');
+	  observer.next('Hello World');
+	  observer.next('Another value');
+	  observer.error(new Error('Error: Something went wrong'));
 
-	//   setTimeout(() => {
-	//     observer.next('Yet another value');
-	//     observer.complete();
-	//   }, 3000);
-	// });
+	  setTimeout(() => {
+	    observer.next('Yet another value');
+	    observer.complete();
+	  }, 3000);
+	});*/
 
-	// source$
-	// .catch(err => Rx.Observable.of(err))
-	// .subscribe(
-	//   x => {
-	//       console.log(x);
-	//     },
-	// err => {
-	//   console.log(err);
-	// },
-	// complete => {
-	//   console.log('completed');
-	// }
-	// );
-
+	/*source$
+	.catch(err => Rx.Observable.of(err))
+	.subscribe(
+	  x => {
+	      console.log(x);
+	    },
+	err => {
+	  console.log(err);
+	},
+	complete => {
+	  console.log('completed');
+	}
+	);
+	*/
 	var MyPromise = new Promise(function (resolve, reject) {
 	  console.log('Creating Promise');
 	  setTimeout(function () {
@@ -89,8 +89,18 @@
 	  }, 3000);
 	});
 
-	MyPromise.then(function (x) {
+	function getUser(username) {
+	  return _jquery2.default.ajax({
+	    url: 'https://api.github.com/users/' + username,
+	    dataType: 'jsonp'
+	  }).promise();
+	}
+
+	/*MyPromise.then(x => {
 	  console.log(x);
+	});*/
+	_Rx2.default.Observable.fromPromise(getUser('bradtraversy')).subscribe(function (x) {
+	  console.log(x.data.bio);
 	});
 
 /***/ }),
