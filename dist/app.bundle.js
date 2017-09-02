@@ -82,6 +82,7 @@
 	}
 	);
 	*/
+
 	var MyPromise = new Promise(function (resolve, reject) {
 	  console.log('Creating Promise');
 	  setTimeout(function () {
@@ -99,9 +100,27 @@
 	/*MyPromise.then(x => {
 	  console.log(x);
 	});*/
-	_Rx2.default.Observable.fromPromise(getUser('bradtraversy')).subscribe(function (x) {
-	  console.log(x.data.bio);
-	});
+	/*Rx.Observable.fromPromise(getUser('bradtraversy'))
+	  .subscribe(x => {
+	    let x = x.data;
+	    console.log(x.bio);
+	  });*/
+
+	function compose() {
+	  var fns = arguments;
+
+	  return function (result) {
+	    for (var i = fns.length - 1; i > -1; i--) {
+	      result = fns[i].call(this, result);
+	    }
+
+	    return result;
+	  };
+	};
+
+	var number = compose(Math.round, parseFloat);
+
+	number('72.5');
 
 /***/ }),
 /* 1 */

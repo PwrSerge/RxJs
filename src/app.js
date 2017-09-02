@@ -27,6 +27,7 @@ complete => {
 }
 );
 */
+
 const MyPromise = new Promise((resolve,reject) => {
   console.log('Creating Promise');
   setTimeout(() => {
@@ -45,8 +46,37 @@ function getUser(username) {
 /*MyPromise.then(x => {
   console.log(x);
 });*/
-Rx.Observable.fromPromise(getUser('bradtraversy'))
+/*Rx.Observable.fromPromise(getUser('bradtraversy'))
   .subscribe(x => {
     let x = x.data;
     console.log(x.bio);
-  });
+  });*/
+
+/*function compose() {
+  var fns = arguments;
+
+  return function(result) {
+    for (var i = fns.length - 1; i > -1; i--) {
+      result = fns[i].call(this, result);
+    }
+
+    return result;
+  };
+};
+
+var number = compose(Math.round, parseFloat);
+
+number('72.5');*/
+
+// State pattern
+
+function HeadingState() {
+  var self = this;
+  this.state = new HelloState(self);
+  this.changeState = function() {
+    self.state.next();
+  };
+  this.getValue = function() {
+    return self.state.value;
+  };
+}
